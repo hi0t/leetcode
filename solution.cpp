@@ -25,8 +25,8 @@ int main()
 {
     Solution s;
 
-    auto v = mkv(2, 7, 11, 15);
-    assert(s.twoSum(v, 9) == mkv(0, 1));
+    vector<int> v = {2, 7, 11, 15};
+    assert(s.twoSum(v, 9) == vector<int>({0, 1}));
 
     return 0;
 }

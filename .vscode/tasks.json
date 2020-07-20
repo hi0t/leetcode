@@ -5,11 +5,11 @@
             "label": "build",
             "command": "/usr/bin/g++",
             "args": [
-                "-std=c++14",
+                "-std=c++17",
                 "-g",
-                "${file}",
+                "${workspaceFolder}/solution.cpp",
                 "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}"
+                "${workspaceFolder}/build/solution"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

@@ -7,24 +7,17 @@
 
 using namespace std;
 
-void __report(const char *assertion, const char *file, unsigned int line)
+void __report(const char *assertion, bool valid)
 {
-    cerr << file << ":" << line
-         << " " << assertion
-         << " \033[31mFAILED\033[0m"
+    cerr << assertion << '\t'
+         << (valid ? "\033[32mPASSED\033[0m" : "\033[31mFAILED\033[0m")
          << endl;
 }
 
-#define assert(expr)         \
-    (static_cast<bool>(expr) \
-         ? void(0)           \
-         : [] { __report(#expr, __FILE__, __LINE__); asm("int3"); }())
-
-template <typename... Args>
-std::vector<typename std::common_type<Args...>::type> mkv(Args &&... args)
-{
-    return {args...};
-}
+#define assert(expr)             \
+    (static_cast<bool>(expr)     \
+         ? __report(#expr, true) \
+         : [] { __report(#expr, false); asm("int3"); }())
 
 struct TreeNode
 {
