@@ -3,21 +3,28 @@
 class Solution
 {
 public:
-    vector<int> twoSum(vector<int> &nums, int target)
+    ListNode *removeNthFromEnd(ListNode *head, int n)
     {
-        unordered_map<int, int> idx;
-
-        for (int i = 0; i < nums.size(); i++)
+        stack<ListNode *> s;
+        auto dummy = new ListNode();
+        dummy->next = head;
+        auto node = dummy;
+        while (node != nullptr)
         {
-            auto it = idx.find(target - nums[i]);
-            if (it != idx.end())
-            {
-                return {it->second, i};
-            }
-            idx[nums[i]] = i;
+            s.push(node);
+            node = node->next;
+        }
+        for (int i = 0; i < n; i++)
+        {
+            s.pop();
         }
 
-        return {0, 0};
+        node = s.top();
+        if (node->next != nullptr)
+        {
+            node->next = node->next->next;
+        }
+        return dummy->next;
     }
 };
 
@@ -25,8 +32,15 @@ int main()
 {
     Solution s;
 
-    vector<int> v = {2, 7, 11, 15};
-    assert(s.twoSum(v, 9) == vector<int>({0, 1}));
+    auto root = new ListNode(1);
+    root->next = new ListNode(2);
+    /*auto cycle = root->next = new ListNode(2);
+    root->next->next = new ListNode(0);
+    root->next->next->next = new ListNode(-4);
+    root->next->next->next->next = new ListNode(-5);
+    root->next->next->next->next->next = cycle;*/
+
+    assert(s.removeNthFromEnd(root, 2));
 
     return 0;
 }
