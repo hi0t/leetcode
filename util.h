@@ -1,11 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <string>
 #include <iostream>
-#include <queue>
-#include <unordered_map>
-#include <stack>
 
 using namespace std;
 
@@ -16,25 +11,46 @@ void __report(const char *assertion, bool valid)
          << endl;
 }
 
-#define assert(expr)             \
-    (static_cast<bool>(expr)     \
-         ? __report(#expr, true) \
-         : [] { __report(#expr, false); asm("int3"); }())
+#define ASSERT(expr)                \
+    (static_cast<bool>(expr)        \
+            ? __report(#expr, true) \
+            : [] { __report(#expr, false); asm("int3"); }())
 
-struct TreeNode
-{
+struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    TreeNode()
+        : val(0)
+        , left(nullptr)
+        , right(nullptr)
+    {
+    }
+    TreeNode(int x)
+        : val(x)
+        , left(nullptr)
+        , right(nullptr)
+    {
+    }
+    TreeNode(int x, TreeNode *left, TreeNode *right)
+        : val(x)
+        , left(left)
+        , right(right)
+    {
+    }
 };
 
-struct ListNode
-{
+struct ListNode {
     int val;
     ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode()
+        : val(0)
+        , next(nullptr)
+    {
+    }
+    ListNode(int x)
+        : val(x)
+        , next(nullptr)
+    {
+    }
 };

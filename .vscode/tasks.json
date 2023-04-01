@@ -5,6 +5,10 @@
             "label": "build",
             "command": "/usr/bin/g++",
             "args": [
+                "-Wall",
+                "-Wextra",
+                "-Wconversion",
+                "-D_GLIBCXX_DEBUG",
                 "-std=c++17",
                 "-g",
                 "${workspaceFolder}/solution.cpp",

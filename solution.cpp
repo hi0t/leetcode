@@ -1,7 +1,7 @@
 #include "util.h"
+#include <bits/stdc++.h>
 
-class Solution
-{
+class Solution {
 public:
     ListNode *removeNthFromEnd(ListNode *head, int n)
     {
@@ -9,19 +9,16 @@ public:
         auto dummy = new ListNode();
         dummy->next = head;
         auto node = dummy;
-        while (node != nullptr)
-        {
+        while (node != nullptr) {
             s.push(node);
             node = node->next;
         }
-        for (int i = 0; i < n; i++)
-        {
+        for (int i = 0; i < n; i++) {
             s.pop();
         }
 
         node = s.top();
-        if (node->next != nullptr)
-        {
+        if (node->next != nullptr) {
             node->next = node->next->next;
         }
         return dummy->next;
@@ -40,7 +37,7 @@ int main()
     root->next->next->next->next = new ListNode(-5);
     root->next->next->next->next->next = cycle;*/
 
-    assert(s.removeNthFromEnd(root, 2));
+    ASSERT(s.removeNthFromEnd(root, 2));
 
     return 0;
 }
